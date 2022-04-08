@@ -1,12 +1,31 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
 
-const URL = "http://localhost:5000/about";
+const URL = "http://localhost:5000/books";
 
-const fetchHandler = async () => {};
+const fetchHandler = async () => {
+  return await axios.get(URL).then((res) => res.data);
+};
 
 const Books = () => {
-  return <div>Books</div>;
+  const [books, setBooks] = useState();
+
+  useEffect(() => {
+    fetchHandler().then((data) => setBooks(data.books));
+  }, []);
+
+  console.log(books);
+
+  return (
+    <div>
+      <ul>
+        {books &&
+          books.map((book) => {
+            return <li>{book.name}</li>;
+          })}
+      </ul>
+    </div>
+  );
 };
 
 export default Books;

@@ -12,6 +12,7 @@ const Header = () => {
         <Toolbar>
           <Typography>
             <MenuBookIcon />
+            {/* menu book icon */}
           </Typography>
 
           <Tabs
@@ -21,7 +22,7 @@ const Header = () => {
             value={tabIndex}
             onChange={(e, value) => setTabIndex(value)}
           >
-            <Tab LinkComponent={NavLink} to="/add" label="Add product" />
+            <Tab LinkComponent={NavLink} to="/addbook" label="Add product" />
             <Tab LinkComponent={NavLink} to="/books" label="Books" />
             <Tab LinkComponent={NavLink} to="/about" label="About Us" />
           </Tabs>
