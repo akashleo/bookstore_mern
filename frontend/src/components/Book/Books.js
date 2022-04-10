@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import Book from "./Book";
 
 const URL = "http://localhost:5000/books";
 
@@ -20,8 +21,12 @@ const Books = () => {
     <div>
       <ul>
         {books &&
-          books.map((book) => {
-            return <li>{book.name}</li>;
+          books.map((book, index) => {
+            return (
+              <div key={index}>
+                <Book book={book} />
+              </div>
+            );
           })}
       </ul>
     </div>
