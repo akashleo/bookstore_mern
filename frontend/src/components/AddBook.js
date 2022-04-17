@@ -14,11 +14,8 @@ const AddBook = () => {
   const [author, setAuthor] = useState("");
   const [description, setDescription] = useState("");
   const [price, setPrice] = useState("");
-
-  console.log(name);
-  console.log(author);
-  console.log(description);
-  console.log(price);
+  const [isAvailable, setIsAvailable] = useState(false);
+  const [image, setImage] = useState("");
 
   const handleAddBook = () => {
     console.log(name);
@@ -40,12 +37,13 @@ const AddBook = () => {
         marginLeft="auto"
         marginRight="auto"
       >
-        <FormLabel>Name</FormLabel>
+        <FormLabel onSubmit={() => handleAddBook()}>Name</FormLabel>
         <TextField
           margin="normal"
           fullWidth
           variant="outlined"
           name="name"
+          value={name}
           onChange={(event) => setName(event.target.value)}
         />
         <FormLabel>Author</FormLabel>
@@ -54,6 +52,7 @@ const AddBook = () => {
           fullWidth
           variant="outlined"
           name="author"
+          value={author}
           onChange={(event) => setAuthor(event.target.value)}
         />
         <FormLabel>Description</FormLabel>
@@ -62,6 +61,7 @@ const AddBook = () => {
           fullWidth
           variant="outlined"
           name="description"
+          value={description}
           onChange={(event) => setDescription(event.target.value)}
         />
         <FormLabel>Price</FormLabel>
@@ -70,6 +70,7 @@ const AddBook = () => {
           fullWidth
           variant="outlined"
           name="price"
+          value={price}
           onChange={(event) => setPrice(event.target.value)}
         />
 
@@ -79,17 +80,19 @@ const AddBook = () => {
           fullWidth
           variant="outlined"
           name="price"
-          onChange={(event) => setPrice(event.target.value)}
+          value={image}
+          onChange={(event) => setImage(event.target.value)}
         />
         <FormControlLabel
-          control={<Checkbox defaultChecked />}
+          control={
+            <Checkbox
+              checked={isAvailable}
+              onChange={(event) => setIsAvailable(!isAvailable)}
+            />
+          }
           label="Available"
         />
-        <Button
-          variant="contained"
-          type="submit"
-          onClick={() => handleAddBook()}
-        >
+        <Button variant="contained" type="submit">
           Add Book
         </Button>
       </Box>
