@@ -17,7 +17,8 @@ const AddBook = () => {
   const [isAvailable, setIsAvailable] = useState(false);
   const [image, setImage] = useState("");
 
-  const handleAddBook = () => {
+  const handleAddBook = (e) => {
+    e.preventDefault();
     console.log(name);
     console.log(author);
     console.log(description);
@@ -25,7 +26,7 @@ const AddBook = () => {
   };
 
   return (
-    <form>
+    <form onSubmit={(e) => handleAddBook(e)}>
       <Box
         display="flex"
         flexDirection="column"
@@ -37,7 +38,7 @@ const AddBook = () => {
         marginLeft="auto"
         marginRight="auto"
       >
-        <FormLabel onSubmit={() => handleAddBook()}>Name</FormLabel>
+        <FormLabel>Name</FormLabel>
         <TextField
           margin="normal"
           fullWidth
