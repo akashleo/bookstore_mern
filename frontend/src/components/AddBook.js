@@ -7,13 +7,15 @@ import {
   Checkbox,
 } from "@mui/material";
 import React, { useState } from "react";
+import axios from "axios";
 
 const AddBook = () => {
+  //const history
   const [bookdata, setBookdata] = useState({});
   const [name, setName] = useState("");
   const [author, setAuthor] = useState("");
   const [description, setDescription] = useState("");
-  const [price, setPrice] = useState("");
+  const [price, setPrice] = useState(0);
   const [isAvailable, setIsAvailable] = useState(false);
   const [image, setImage] = useState("");
 
@@ -23,6 +25,23 @@ const AddBook = () => {
     console.log(author);
     console.log(description);
     console.log(price);
+    console.log(image);
+    sendRequest();
+  };
+
+  const sendRequest = async () => {
+    await axios
+      .post("http://localhost:5000/books", {
+        name: String(name),
+        author: String(author),
+        description: String(description),
+        price: Number(price),
+        image: String(image),
+        isAvailable: Boolean(isAvailable),
+      })
+      .then((res) => {
+        console.log(res.data);
+      });
   };
 
   return (
