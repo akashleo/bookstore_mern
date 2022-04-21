@@ -8,10 +8,11 @@ import {
 } from "@mui/material";
 import React, { useState } from "react";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 const AddBook = () => {
-  //const history
-  const [bookdata, setBookdata] = useState({});
+  const history = useNavigate();
+  //const [bookdata, setBookdata] = useState({});
   const [name, setName] = useState("");
   const [author, setAuthor] = useState("");
   const [description, setDescription] = useState("");
@@ -41,7 +42,8 @@ const AddBook = () => {
       })
       .then((res) => {
         console.log(res.data);
-      });
+      })
+      .then(() => history("/books"));
   };
 
   return (

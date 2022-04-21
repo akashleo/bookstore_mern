@@ -1,6 +1,8 @@
 import { Button } from "@mui/material";
 import React from "react";
 import "./Book.css";
+import { Link } from "react-router-dom";
+
 const Book = ({ book }) => {
   const { _id, name, author, description, price, available, image } = book;
   return (
@@ -16,7 +18,10 @@ const Book = ({ book }) => {
       <h3>{name}</h3>
       <p>{description}</p>
       <h2>Rs {price}</h2>
-      <Button variant="outlined">Update</Button> &nbsp;
+      <Button LinkComponent={Link} to={`/books/${_id}`} variant="outlined">
+        Update
+      </Button>{" "}
+      &nbsp;
       <Button variant="outlined">Delete</Button>
     </div>
   );
